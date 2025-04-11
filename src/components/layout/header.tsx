@@ -12,16 +12,36 @@ import Image from 'next/image';
 
 export default function Header() {
   const header = useRef(null);
+  const navLinks = useRef(null);
   const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();
   const button = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (isActive) setIsActive(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Menu button animation
     gsap.to(button.current, {
       scrollTrigger: {
         trigger: document.documentElement,
@@ -80,15 +100,19 @@ export default function Header() {
         </div>
         {!isMobile() && (
           <div className="flex flex-1 items-center justify-between font-semibold">
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <div className="flex flex-col">
-                <Magnetic>
-                  <Link href={'/about'}>About</Link>
-                </Magnetic>
-                <Magnetic>
-                  <Link href={'/projects'}>Projects</Link>
-                </Magnetic>
-              </div>
+            <div 
+              ref={navLinks}
+              className={`group relative z-10 flex cursor-pointer gap-6 p-3 transition-all duration-300 ease-in-out ${isScrolled ? 'opacity-0 pointer-events-none hidden' : 'opacity-100'}`}
+            >
+              <Magnetic>
+                <Link href={'/about'}>About</Link>
+              </Magnetic>
+              <Magnetic>
+                <Link href={'/work-history'}>Experience</Link>
+              </Magnetic>
+              <Magnetic>
+                <Link href={'/projects'}>Projects</Link>
+              </Magnetic>
             </div>
             <div className="group relative z-10 flex cursor-pointer flex-col p-3">
               <Magnetic>

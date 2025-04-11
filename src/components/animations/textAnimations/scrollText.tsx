@@ -4,11 +4,11 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const creativity = 'Creativity ';
-const is = 'is ';
-const my = 'my ';
-const craft = 'craft';
-const sentence3 = 'abstract thinking is my passion';
+const creativity = 'Innovate ';
+const is = 'or ';
+const my = 'become ';
+const craft = 'irrelevant';
+const sentence3 = '.................................';
 
 function getRandomSpeed() {
   const randomDecimal = Math.random();
@@ -45,7 +45,7 @@ function LetterDisplay({ word }: { word: string }) {
   return word.split('').map((letter, index) => (
     <div
       key={index}
-      className="letter text-6xl font-semibold xs:text-[90px] xs:leading-none md:text-[120px] lg:text-[150px] xl:text-[210px] "
+      className="letter text-4xl font-semibold xs:text-[60px] xs:leading-none md:text-[80px] lg:text-[100px] xl:text-[140px] "
       data-speed={getRandomSpeed()}
     >
       {letter}
@@ -63,15 +63,15 @@ export function LetterCollision() {
 
   return (
     <div ref={containerRef} className="ml-8 scroll-smooth">
-      <div className="-mt-28 mb-36 flex h-screen flex-col justify-end lg:mb-24">
+      <div className="mt-0 md:mt-8 lg:mt-16 mb-28 flex h-[95vh] flex-col justify-center lg:mb-20">
         <div className="flex flex-wrap p-0">
           <LetterDisplay word={creativity} />
-          <div className="w-2 xs:w-4 sm:w-10"></div>
+          <div className="w-1 xs:w-3 sm:w-8"></div>
           <LetterDisplay word={is} />
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap mt-0 sm:mt-[-10px] md:mt-[-15px] lg:mt-[-20px]">
           <LetterDisplay word={my} />
-          <div className="w-2 xs:w-4 sm:w-10"></div>
+          <div className="w-1 xs:w-3 sm:w-8"></div>
           <LetterDisplay word={craft} />
         </div>
       </div>

@@ -18,14 +18,6 @@ const links = [
     href: '/projects'
   },
   {
-    title: 'gallery',
-    href: '/gallery'
-  },
-  {
-    title: 'blog',
-    href: '/blog'
-  },
-  {
     title: 'contact',
     href: '/contact'
   }

@@ -54,13 +54,7 @@ export default function Header() {
         <div className="flex lg:pr-56">
           <Link href={'/'} className="group z-10 flex items-center space-x-2">
             <Magnetic>
-              <Image
-                height={32}
-                width={32}
-                src="/images/logo.jpg"
-                alt="Bettinas logo"
-                priority
-              />
+              <div className="h-8 w-8 bg-primary rounded-full"></div>
             </Magnetic>
             {!isMobile() && (
               <>
@@ -93,16 +87,6 @@ export default function Header() {
                 </Magnetic>
                 <Magnetic>
                   <Link href={'/projects'}>Projects</Link>
-                </Magnetic>
-              </div>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <div className="flex flex-col">
-                <Magnetic>
-                  <Link href={'/gallery'}>Gallery</Link>
-                </Magnetic>
-                <Magnetic>
-                  <Link href={'/blog'}>Blog</Link>
                 </Magnetic>
               </div>
             </div>

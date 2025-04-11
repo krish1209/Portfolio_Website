@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDownRight } from 'lucide-react';
-import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 import { LetterCollision } from '@/components/animations/textAnimations/scrollText';
 import Magnetic from '@/components/animations/magnetic';
 import Hero from '@/components/home/hero';
@@ -55,7 +54,6 @@ export default function Home() {
         <Hero />
       </div>
       <Description />
-      <ContrastCursor isActive={false} text={'Go to project'} />
     </div>
   );
 }

@@ -105,13 +105,15 @@ export default function Modal({ projects }: ModalProps) {
                 style={{ backgroundColor: color }}
                 key={`modal_${index}`}
               >
-                <Image
-                  src={`/images/${src}`}
-                  width={350}
-                  height={0}
-                  alt="image"
-                  className="h-auto"
-                />
+                {src && (
+                  <Image
+                    src={`/images/${src}`}
+                    width={350}
+                    height={0}
+                    alt="image"
+                    className="h-auto"
+                  />
+                )}
               </div>
             );
           })}

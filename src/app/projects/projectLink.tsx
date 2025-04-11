@@ -6,9 +6,10 @@ interface Props {
   index: number;
   title: string;
   tag: string;
+  color?: string;
 }
 
-export default function ProjectLink({ index, title, tag }: Props) {
+export default function ProjectLink({ index, title, tag, color }: Props) {
   const { setModal } = useContext(ModalContext);
 
   return (

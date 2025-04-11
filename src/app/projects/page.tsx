@@ -3,39 +3,50 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import ProjectLink from '@/app/projects/projectLink';
-import Modal from '@/app/projects/project/modal';
 import Layout from '@/components/layout';
 import { ModalContext } from './modalContext';
 
 const projects = [
   {
-    title: 'StyleSync',
-    src: 'stylesync/stylesync.png',
-    href: '/projects/stylesync',
-    tag: 'ML / AI',
-    color: 'Black'
+    title: 'Options Pricing Tool',
+    src: '', // No image
+    href: 'https://pricingoptions.in',
+    tag: 'Finance / Data',
+    color: '#2C3E50'
   },
-  
-  // {
-  //   title: 'DAO social network',
-  //   src: 'sojo/astra.png',
-  //   href: '/projects/catapult-v1',
-  //   tag: 'Software',
-  //   color: '#303030'
-  // },
-  // {
-  //   title: 'SOJO',
-  //   src: 'sojo/astra.png',
-  //   href: '/projects/sojo',
-  //   tag: 'Software',
-  //   color: '#303030'
-  // },
-  // {
-
+  {
+    title: 'Monte Carlo Portfolio Simulations',
+    src: '', // No image
+    href: 'https://github.com/krish1209/MonteCarloSims',
+    tag: 'Finance / ML',
+    color: '#34495E'
+  },
+  {
+    title: 'Cryptocurrency forecasting',
+    src: '', // No image
+    href: 'https://github.com/krish1209/Crypto-Forecasting',
+    tag: 'ML / Finance',
+    color: '#1A5276'
+  },
+  {
+    title: 'ASL Learning platform',
+    src: '', // No image
+    href: 'https://github.com/krish1209/ASLdetect',
+    tag: 'AI / Accessibility',
+    color: '#1ABC9C'
+  },
+  {
+    title: 'Speech emotion recognition',
+    src: '', // No image
+    href: 'https://github.com/krish1209/Speech-emotion-recognition',
+    tag: 'ML / AI',
+    color: '#8E44AD'
+  }
 ];
 
 export default function ProjectsHome() {
   const [modal, setModal] = useState({ active: false, index: 0 });
+  
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
       <Layout title={'My Work'}>
@@ -43,17 +54,17 @@ export default function ProjectsHome() {
           <div className="m-0 overflow-hidden">
             {projects.map((project, index) => {
               return (
-                <Link href={project.href} key={index}>
+                <Link href={project.href} key={index} target="_blank" rel="noopener noreferrer">
                   <ProjectLink
                     index={index}
                     title={project.title}
                     tag={project.tag}
+                    color={project.color}
                   />
                 </Link>
               );
             })}
           </div>
-          <Modal projects={projects} />
         </div>
       </Layout>
     </ModalContext.Provider>

@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Magnetic from '@/components/animations/magnetic';
@@ -38,17 +37,8 @@ export default function ContactInfo() {
     >
       <div className="w-full bg-foreground pt-[150px] sm:max-w-[1800px]">
         <div className="relative border-b border-gray-600 pb-12 sm:mx-[100px]">
-          <span className="flex items-center">
-            <div className="relative h-16 w-16 overflow-hidden rounded-full sm:h-[100px] sm:w-[100px]">
-              <Image
-                fill
-                alt={'profile'}
-                src={`/images/profile2.jpg`}
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </div>
-            <h2 className="ml-3 text-xl font-medium sm:text-[5vh]">
+          <span className="flex items-center justify-center">
+            <h2 className="text-xl font-medium sm:text-[5vh] text-center">
               Let&apos;s work together!
             </h2>
           </span>
@@ -70,7 +60,7 @@ export default function ContactInfo() {
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
           <p className="min-w-screen mb-5 text-base sm:max-w-xs">
-            AI ML Engineer, Quantitative Finance/Research Enthusiast. Focusing on solving Real world problems using ever changing technology.
+            Data and Quantitative Engineer. Focusing on solving Real world problems using ever changing technology.
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">

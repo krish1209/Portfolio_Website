@@ -3,21 +3,13 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { useSpotify } from '@/hooks/useSpotify';
 import Layout from '@/components/layout';
 import { useGitHub } from '@/hooks/useGithub';
 import GitHubContributionsGraph from '@/app/about/githubActivity';
-import SpotifyPlaylists from '@/app/about/spotifyPlaylists';
 import Link from 'next/link';
 
 export default function About() {
   const starsRef = useRef<HTMLDivElement>(null);
-  const {
-    playlists,
-    isLoading: spotifyLoading,
-    error: spotifyError,
-    topTracks
-  } = useSpotify();
 
   const {
     githubData,
@@ -41,17 +33,19 @@ export default function About() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-purple-200 via-purple-300 to-yellow-200">
-      <Layout title="I'm Bettina" center>
+    <div className="relative overflow-hidden bg-gradient-to-b from-slate-800 via-slate-700 to-slate-900">
+      <Layout title="About Me" center>
         <div className="relative min-h-screen">
           <div ref={starsRef}>
-            {[...Array(50)].map((_, i) => (
+            {[...Array(100)].map((_, i) => (
               <div
                 key={i}
-                className="absolute h-1 w-1 rounded-full bg-white opacity-70"
+                className="absolute h-1 w-1 rounded-full bg-blue-400 opacity-70"
                 style={{
                   top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`
+                  left: `${Math.random() * 100}%`,
+                  width: `${Math.random() * 3}px`,
+                  height: `${Math.random() * 3}px`
                 }}
               />
             ))}
@@ -60,103 +54,70 @@ export default function About() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
               <div className="flex flex-col gap-10">
-                <div className="relative">
-                  <div className="rounded-full blur-3xl" />
-                  <Image
-                    className="relative z-10 mx-auto h-auto w-full max-w-sm rounded-t-full shadow-lg"
-                    width={1440}
-                    height={1800}
-                    src="/images/profile2.jpg"
-                    alt="Profile picture"
-                  />
+                <div className="relative p-8">
+                  <div className="bg-blue-500 absolute inset-0 rounded-xl blur-3xl opacity-20" />
+                  <div className="relative z-10 p-8 bg-slate-800/50 rounded-xl border border-slate-700/50 backdrop-blur-sm">
+                    <h2 className="text-3xl font-bold mb-4 text-center text-blue-300">Skills & Expertise</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2 text-blue-200">Financial Modeling</h3>
+                        <ul className="list-disc list-inside space-y-1 text-gray-300">
+                          <li>Options Pricing Models</li>
+                          <li>Portfolio Optimization</li>
+                          <li>Risk Assessment</li>
+                          <li>Time Series Analysis</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2 text-blue-200">Machine Learning</h3>
+                        <ul className="list-disc list-inside space-y-1 text-gray-300">
+                          <li>Predictive Modeling</li>
+                          <li>Deep Learning</li>
+                          <li>NLP & Computer Vision</li>
+                          <li>Reinforcement Learning</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                {spotifyLoading ? (
-                  <p>Loading Spotify playlists...</p>
-                ) : spotifyError ? (
-                  <p>Error: {spotifyError}</p>
-                ) : playlists.length > 0 ? (
-                  <SpotifyPlaylists playlists={playlists} />
-                ) : null}
               </div>
 
               <div className="flex flex-col gap-10">
-                <div className="text-primary-950/70 dark:text-primary-200/70 space-y-8">
+                <div className="text-white space-y-8">
                   <p className="text-2xl font-semibold">
-                    A software engineer and designer with a passion for
-                    innovation and cutting-edge technology.
+                    A data and quantitative engineer with expertise in financial modeling, machine learning, and AI systems.
                   </p>
                   <p className="text-lg sm:text-xl">
-                    I have a strong track record of building and deploying
-                    successful products.
+                    I have a strong track record of developing innovative solutions for complex data and financial problems.
                   </p>
                   <p className="text-lg sm:text-xl">
-                    At{' '}
-                    <Link
-                      href="https://www.sojo.uk/"
-                      className="font-semibold underline"
-                    >
-                      Sojo
-                    </Link>
-                    , I was the founding full-stack engineer, responsible for
-                    the design, development, and deployment of the
-                    company&apos;s core platform. I built a scalable and
-                    user-friendly app that allowed users to order repairs and
-                    customisation clothing services online.
+                    My experience spans developing sophisticated options pricing models, portfolio optimization tools, and 
+                    quantitative trading systems. I have a particular interest in applying machine learning to financial markets 
+                    and creating tools that make complex financial concepts more accessible.
                   </p>
                   <p className="text-lg sm:text-xl">
-                    After Sojo, I joined{' '}
-                    <Link
-                      href="https://www.catapultlabs.xyz/"
-                      className="font-semibold underline"
-                    >
-                      Catapult Labs
-                    </Link>
-                    , a startup in the blockchain space, as a founding
-                    full-stack software engineer. I played a key role in the
-                    development of the company&apos;s flagship product, a Web3
-                    profiles platform that enables networking in the
-                    decentralized space.
+                    I've worked extensively with time series analysis, statistical modeling, and algorithmic trading strategies.
+                    My work combines solid mathematical foundations with practical implementation, always focusing on delivering
+                    systems that provide actionable insights from complex data.
                   </p>
                   <p className="text-lg sm:text-xl">
-                    I then worked on developing decentralised financial
-                    primitives and protocols to enable OTC (Over-The-Counter)
-                    crypto markets on-chain, including collateral management and
-                    margin trading systems. During this time I also learnt
-                    Solidity, to enable the development of smart contracts to
-                    enable new on-chain financial products.
+                    In addition to my financial work, I've developed AI systems for accessibility and human-computer interaction,
+                    including platforms for American Sign Language learning and speech emotion recognition.
                   </p>
                   <p className="text-lg sm:text-xl">
-                    In recent months I have been working on an AI co-pilot for
-                    digital asset trading that unifies client conversations
-                    across chat clients like Telegram using OpenAI&apos;s
-                    models.
+                    I'm particularly interested in the intersection of AI and finance, exploring how machine learning can improve 
+                    market predictions, risk assessment, and investment decisions in both traditional and cryptocurrency markets.
                   </p>
                   <p className="text-lg sm:text-xl">
-                    At Imperial College London, I studied design engineering.
-                    During my time at university, I worked on a number of
-                    projects, including{' '}
-                    <Link
-                      href="/projects/m31"
-                      className="font-semibold underline"
-                    >
-                      Andromeda
-                    </Link>
-                    , which was awarded a gold prize in the Creative Conscience
-                    Awards, and{' '}
-                    <Link
-                      href="/projects/axo"
-                      className="font-semibold underline"
-                    >
-                      AxoWear
-                    </Link>
-                    , which was exhibited at the Design Museum London.
+                    When I'm not coding or analyzing data, I enjoy contributing to open-source projects and mentoring aspiring
+                    data scientists and engineers. I believe in creating technology that has meaningful impact and empowers users.
                   </p>
                 </div>
               </div>
             </div>
             <Link
               className="flex flex-col gap-10 pt-10"
-              href="https://github.com/bettinasosa"
+              href="https://github.com/krish1209"
             >
               {githubLoading ? (
                 <div></div>

@@ -65,27 +65,26 @@ export default function ContactInfo() {
           </motion.div>
         </div>
         <div className="mt-6 flex gap-5 sm:mx-[100px]">
-          <RoundedButton>bettinasosarohl@gmail.com</RoundedButton>
+          <RoundedButton>krish.bagga10@gmail.com</RoundedButton>
         </div>
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
           <p className="min-w-screen mb-5 text-base sm:max-w-xs">
-            AI/LLM enthusiast | Cutting-edge tech advocate | Web3 builder |
-            Passionate about using technology to make the world a better place.
+            AI ML Engineer, Quantitative Finance/Research Enthusiast. Focusing on solving Real world problems using ever changing technology.
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">
               <h3 className="m-0 cursor-default p-1 text-base font-light text-gray-500">
                 Version
               </h3>
-              <p className="relative m-0 cursor-pointer p-1">2024 © Edition</p>
+              <p className="relative m-0 cursor-pointer p-1">2025 © Edition</p>
             </span>
             <span className="flex flex-col gap-3">
               <h3 className="m-0 cursor-default p-1 text-base font-light text-gray-500">
                 Timezone
               </h3>
               <p className="relative m-0 cursor-pointer p-1">
-                {timeNow} UK (GMT+1)
+                {timeNow} India (IST)
               </p>
             </span>
           </div>
@@ -96,7 +95,7 @@ export default function ContactInfo() {
               </h3>
               <Magnetic>
                 <Link
-                  href="https://twitter.com/bettysrohl"
+                  href="https://x.com/Krish6117"
                   className={animatedUnderlineStyle}
                 >
                   Twitter
@@ -105,7 +104,7 @@ export default function ContactInfo() {
             </span>
             <Magnetic>
               <Link
-                href="https://github.com/bettinasosa"
+                href="https://github.com/krish1209"
                 className={animatedUnderlineStyle}
               >
                 Github
@@ -113,7 +112,7 @@ export default function ContactInfo() {
             </Magnetic>
             <Magnetic>
               <Link
-                href="https://github.com/bettinasosa"
+                href="https://www.linkedin.com/in/krishbagga/"
                 className={animatedUnderlineStyle}
               >
                 Linkedin

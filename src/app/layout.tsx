@@ -10,8 +10,8 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Bettina's portfolio",
-  description: 'Bettina is a software engineer and designer.'
+  title: "KB's portfolio",
+  description: 'A Computer Science Engineer and a Finance enthusiast.'
 };
 
 export default function RootLayout({

@@ -9,46 +9,13 @@ import { ModalContext } from './modalContext';
 
 const projects = [
   {
-    title: 'M31 Controller',
-    src: 'm31/controller.jpg',
-    description:
-      'A video/audio game controller to make digital entertainment more approachable to those with visual impairments.',
-    href: '/projects/m31',
-    tag: 'Prototyping',
-    color: '#000000'
-  },
-  {
-    title: 'AXO',
-    src: 'axo/astronaut-square.png',
-    href: '/projects/axo',
-    tag: 'Bio Materials',
-    color: '#ee5622'
-  },
-  {
     title: 'StyleSync',
     src: 'stylesync/stylesync.png',
     href: '/projects/stylesync',
     tag: 'ML / AI',
-    color: 'pink'
+    color: 'Black'
   },
-  {
-    title: 'StackeRs',
-    description:
-      'Reusable packaging made of highly recyclable materials for baby bathing products.',
-    src: 'bottles/block.png',
-    href: '/projects/stackers',
-    tag: 'Packaging',
-    color: '#EFE8D3'
-  },
-  {
-    title: 'ASTRA',
-    description: 'An interstellar games arcade with a hologram screen.',
-    src: 'astra/astra.png',
-    href: '/projects/astra',
-    tag: 'GIZMO',
-    color: '#303030'
-  }
-
+  
   // {
   //   title: 'DAO social network',
   //   src: 'sojo/astra.png',
@@ -64,40 +31,7 @@ const projects = [
   //   color: '#303030'
   // },
   // {
-  //   title: 'JENGA',
-  //   src: 'jenga.jpg',
-  //   href: '/projects/robot-jenga',
-  //   tag: 'Robotics',
-  //   color: '#706D63'
-  // },
-  // {
-  //   title: 'Woody',
-  //   src: 'woody.jpg',
-  //   href: '/projects/woody',
-  //   tag: 'Electronics',
-  //   color: '#706D63'
-  // },
-  // {
-  //   title: 'DAFT(PUNK)BOT',
-  //   src: 'cubo/cubo.jpg',
-  //   href: '/projects/cubo',
-  //   tag: 'Electronics',
-  //   color: '#EFE8D3'
-  // },
-  // {
-  //   title: 'Tandem bike',
-  //   src: 'bike.png',
-  //   href: '/projects/tandem-bike-bike',
-  //   tag: 'CAD & optimisation',
-  //   color: '#EFE8D3'
-  // },
-  // {
-  //   title: 'TETRIS',
-  //   src: 'tetris.png',
-  //   href: '/projects/tetris',
-  //   tag: 'Software',
-  //   color: '#EFE8D3'
-  // }
+
 ];
 
 export default function ProjectsHome() {

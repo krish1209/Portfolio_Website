@@ -70,14 +70,14 @@ export default function Header() {
                     coded by
                   </div>
                   <div className="ease-custom-cubic px-1 transition-transform duration-500 group-hover:translate-x-[-65px]">
-                    Bettina
+                    Krish
                   </div>
 
                   <div
                     className="ease-custom-cubic
               translate-x-full transition-transform duration-500 group-hover:translate-x-[-65px]"
                   >
-                    Sosa
+                    Bagga
                   </div>
                 </div>
               </>

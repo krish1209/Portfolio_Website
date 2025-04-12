@@ -1,38 +1,29 @@
 'use client';
-import { FormProvider, useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
-import RoundedButton from '@/components/animations/roundedButton';
-
-type ContactFormData = {
-  subject: string;
-  email: string;
-  body: string;
-};
+import React from 'react';
+import { useToast } from '@/components/ui/use-toast';
 
 export function ContactForm() {
-  const form = useForm<ContactFormData>({
-    defaultValues: {
-      subject: '',
-      email: '',
-      body: ''
-    }
-  });
+  const { toast } = useToast();
+  const email = 'krish.bagga10@gmail.com';
 
-  const onSubmit = (data: ContactFormData) => {
-    const { subject, email, body } = data;
-    window.location.href = `mailto:bettinasosarohl@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}%0D%0A%0D%0AFrom: ${encodeURIComponent(
-      email
-    )}`;
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      
+      // Show success toast notification
+      toast({
+        title: "Copied!",
+        description: "Email address copied to clipboard",
+        duration: 3000,
+        className: "bg-gradient-to-r from-green-400 to-blue-500 text-white border-none"
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to copy email. Please try manually.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -43,73 +34,21 @@ export function ContactForm() {
             Let&apos;s talk!
           </h2>
           <p className="text-primary-950/70 dark:text-primary-200/70 max-w-lg text-lg sm:text-xl">
-            I&apos;m always looking for new and innovative ways to use my
-            skills.
+            To use and expand my skills.
           </p>
         </div>
         <div className="col-span-2">
-          <FormProvider {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col space-y-6"
+          <div className="flex items-center justify-center h-full">
+            <div className="mr-4 text-3xl">→</div>
+            <button 
+              onClick={copyToClipboard}
+              className="group relative flex items-center text-2xl font-medium transition-colors hover:text-primary-500"
             >
-              <FormField
-                control={form.control}
-                name="subject"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col space-y-1">
-                    <FormLabel className="text-xl">Subject</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Full name"
-                        className="w-full rounded-xl bg-background text-foreground"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col space-y-1">
-                    <FormLabel className="text-xl">Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="w-full rounded-xl bg-background text-foreground"
-                        type="email"
-                        placeholder="Email"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="body"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col space-y-1">
-                    <FormLabel className="text-xl">Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        className="w-full rounded-xl bg-background text-foreground"
-                        placeholder="Message"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="flex justify-end">
-                <RoundedButton>Submit</RoundedButton>
-              </div>
-            </form>
-          </FormProvider>
+              {email}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary-500 transition-all group-hover:w-full"></span>
+              <span className="ml-2 text-sm opacity-70">(click to copy)</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

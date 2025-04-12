@@ -49,8 +49,8 @@ export default function ProjectsHome() {
   
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
-      <Layout title={'My Work'}>
-        <div className="m-0 relative">
+      <Layout title={'My Work'} center={true}>
+        <div className="mt-16 relative">
           
           <div className="m-0 overflow-hidden relative z-10">
             {projects.map((project, index) => {

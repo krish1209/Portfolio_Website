@@ -60,30 +60,75 @@ export default function WorkHistory() {
     gsap.set('.education-card', { opacity: 1 });
     gsap.set('.decoration-element', { opacity: 0.6 });
     
+    // Add subtle mouse parallax effect to background elements
+    const handleMouseMove = (e: MouseEvent) => {
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      const orbs = document.querySelectorAll('.bg-primary\\/10, .bg-secondary\\/10, .bg-primary\\/5');
+      orbs.forEach((orb, index) => {
+        const depth = 0.05 + (index * 0.01);
+        const moveX = (mouseX - 0.5) * 50 * depth;
+        const moveY = (mouseY - 0.5) * 50 * depth;
+        
+        gsap.to(orb, {
+          x: moveX,
+          y: moveY,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    
     return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
-    <div className="min-h-screen bg-foreground pt-40 md:pt-48 pb-24 px-4 md:px-8 lg:px-16">
+    <div className="min-h-screen bg-[#050505] pt-40 md:pt-48 pb-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+      
+      {/* Dynamic background elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        {/* Gradient orbs */}
+        <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] rounded-full bg-primary/10 blur-[80px] animate-float-slow"></div>
+        <div className="absolute top-[60%] right-[5%] w-[250px] h-[250px] rounded-full bg-secondary/10 blur-[60px] animate-float"></div>
+        <div className="absolute bottom-[10%] left-[20%] w-[200px] h-[200px] rounded-full bg-primary/5 blur-[50px] animate-float-reverse"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMyMDIwMjAiIG9wYWNpdHk9IjAuMDUiIGQ9Ik0wIDAgaDYwIHY2MCBIMHoiLz48cGF0aCBkPSJNMzAgMCB2NjAiIHN0cm9rZT0iIzIwMjAyMCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiLz48cGF0aCBkPSJNMCAwIGg2MCIgc3Ryb2tlPSIjMjAyMDIwIiBzdHJva2Utb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
+        
+        {/* Particles */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div 
+              key={i}
+              className="absolute rounded-full bg-white opacity-20"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${3 + Math.random() * 5}px`,
+                height: `${3 + Math.random() * 5}px`,
+                animationDuration: `${10 + Math.random() * 40}s`,
+                animationDelay: `${Math.random() * 5}s`,
+                animation: `float ${8 + Math.random() * 7}s ease-in-out infinite`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
       {/* Work Experience Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-20 text-center"
-      >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary mb-4">
+      <div className="mb-20 text-center">
+        <h1 className="pb-14 text-3xl font-medium lg:text-[8rem] text-white">
           Work Experience
         </h1>
-        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-          A journey through my professional career and the impact I&apos;ve made
-        </p>
-      </motion.div>
+      </div>
 
       <div ref={timelineRef} className="max-w-6xl mx-auto relative mb-32">
-        {/* Vertical Timeline Line - simple div with fixed styling */}
+        {/* Vertical Timeline Line with animated gradient */}
         <div style={{
           position: 'absolute',
           left: '50%',
@@ -91,31 +136,42 @@ export default function WorkHistory() {
           marginLeft: '-2px',
           width: '4px',
           height: '100%',
-          backgroundColor: 'purple',
-          minHeight: '500px'
-        }}></div>
+          background: 'linear-gradient(180deg, #8b5cf6, #ec4899)',
+          minHeight: '500px',
+          boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)',
+          animation: 'pulse 4s infinite'
+        }}>
+          {/* Animated glow for the timeline */}
+          <style jsx>{`
+            @keyframes pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.7; }
+            }
+          `}</style>
+        </div>
         
         {experiences.map((exp, index) => (
           <div 
             key={exp.id} 
             id={`experience-${exp.id}`}
-            className={`flex flex-col md:flex-row md:items-start gap-8 mb-32 relative`}
+            className={`experience-card flex flex-col md:flex-row md:items-start gap-8 mb-32 relative`}
           >
             {/* Left side content */}
             <div className={`hidden md:block w-1/2 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:order-1 md:pl-12'}`}>
               {index % 2 === 0 ? (
-                <div className="space-y-4 bg-black/50 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/5">
-                  <div>
+                <div className="space-y-4 bg-black/50 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/5 relative">
+                  
+                  <div className="relative z-10">
                     <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
                     <h4 className="text-xl font-semibold text-primary mb-1">{exp.company}</h4>
                     <p className="text-gray-400 text-sm">{exp.period}</p>
                   </div>
-                  <ul className="space-y-2 text-gray-300 pl-5">
+                  <ul className="space-y-2 text-gray-300 pl-5 relative z-10">
                     {exp.description.map((item, i) => (
                       <li key={i} className="relative pl-2 before:content-[''] before:absolute before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full before:left-[-12px] before:top-[8px]">{item}</li>
                     ))}
                   </ul>
-                  <div className="flex flex-wrap gap-2 justify-end mt-3">
+                  <div className="flex flex-wrap gap-2 justify-end mt-3 relative z-10">
                     {exp.skills.map((skill, i) => (
                       <span 
                         key={i} 
@@ -143,18 +199,19 @@ export default function WorkHistory() {
             {/* Right side content */}
             <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:order-1 md:pl-12' : 'md:pr-12'}`}>
               {index % 2 === 0 ? null : (
-                <div className="space-y-4 bg-black/50 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/5">
-                  <div>
+                <div className="space-y-4 bg-black/50 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/5 relative">
+                  
+                  <div className="relative z-10">
                     <h3 className="md:text-2xl font-bold text-white mb-1">{exp.role}</h3>
                     <h4 className="md:text-xl font-semibold text-primary mb-1">{exp.company}</h4>
                     <p className="text-gray-400 text-sm">{exp.period}</p>
                   </div>
-                  <ul className="space-y-2 text-gray-300 pl-5">
+                  <ul className="space-y-2 text-gray-300 pl-5 relative z-10">
                     {exp.description.map((item, i) => (
                       <li key={i} className="relative pl-2 before:content-[''] before:absolute before:w-1.5 before:h-1.5 before:bg-primary before:rounded-full before:left-[-12px] before:top-[8px]">{item}</li>
                     ))}
                   </ul>
-                  <div className="flex flex-wrap gap-2 mt-3">
+                  <div className="flex flex-wrap gap-2 mt-3 relative z-10">
                     {exp.skills.map((skill, i) => (
                       <span 
                         key={i} 
@@ -179,8 +236,9 @@ export default function WorkHistory() {
                 height: '12px',
                 borderRadius: '50%',
                 backgroundColor: 'white',
-                border: '3px solid purple',
-                zIndex: 2
+                border: '3px solid #8b5cf6',
+                zIndex: 2,
+                boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)'
               }}
             />
             
@@ -194,14 +252,16 @@ export default function WorkHistory() {
                 width: '36px',
                 height: '36px',
                 borderRadius: '50%',
-                backgroundColor: 'purple',
+                background: 'linear-gradient(45deg, #8b5cf6, #ec4899)',
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontWeight: 'bold',
                 fontSize: '18px',
-                zIndex: 3
+                zIndex: 3,
+                boxShadow: '0 0 20px rgba(139, 92, 246, 0.6)',
+                animation: 'pulse 2s infinite'
               }}
             >
               {exp.id}
@@ -211,19 +271,11 @@ export default function WorkHistory() {
       </div>
 
       {/* Education Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="mb-12 text-center"
-      >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-secondary via-primary to-secondary mb-4">
+      <div className="mb-12 text-center">
+        <h1 className="pb-14 text-3xl font-medium lg:text-[8rem] text-white">
           Education
         </h1>
-        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-          Academic background and learning journey
-        </p>
-      </motion.div>
+      </div>
 
       <motion.div 
         initial={{ opacity: 0 }}

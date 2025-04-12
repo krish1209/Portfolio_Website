@@ -8,7 +8,7 @@ import Image from 'next/image';
 export default function ASLLearning() {
   const heroText =
     'An interactive education platform that uses computer vision and machine learning ' +
-    'to teach American Sign Language (ASL). The system provides real-time feedback on users\'  +
+    'to teach American Sign Language (ASL). The system provides real-time feedback on users\' ' +
     'signing technique through a webcam, offering an accessible and engaging way to learn ASL ' +
     'with personalized guidance and progress tracking.';
 

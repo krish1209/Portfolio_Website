@@ -9,35 +9,35 @@ import { ModalContext } from './modalContext';
 const projects = [
   {
     title: 'Options Pricing Tool',
-    src: '', // No image
+    src: '',
     href: 'https://pricingoptions.in',
     tag: 'Finance / Data',
     color: '#2C3E50'
   },
   {
     title: 'Monte Carlo Portfolio Simulations',
-    src: '', // No image
+    src: '',
     href: 'https://github.com/krish1209/MonteCarloSims',
     tag: 'Finance / ML',
     color: '#34495E'
   },
   {
     title: 'Cryptocurrency forecasting',
-    src: '', // No image
+    src: '',
     href: 'https://github.com/krish1209/Crypto-Forecasting',
     tag: 'ML / Finance',
     color: '#1A5276'
   },
   {
     title: 'ASL Learning platform',
-    src: '', // No image
+    src: '',
     href: 'https://github.com/krish1209/ASLdetect',
     tag: 'AI / Accessibility',
     color: '#1ABC9C'
   },
   {
     title: 'Speech emotion recognition',
-    src: '', // No image
+    src: '',
     href: 'https://github.com/krish1209/Speech-emotion-recognition',
     tag: 'ML / AI',
     color: '#8E44AD'
@@ -50,8 +50,9 @@ export default function ProjectsHome() {
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
       <Layout title={'My Work'}>
-        <div className="m-0">
-          <div className="m-0 overflow-hidden">
+        <div className="m-0 relative">
+          
+          <div className="m-0 overflow-hidden relative z-10">
             {projects.map((project, index) => {
               return (
                 <Link href={project.href} key={index} target="_blank" rel="noopener noreferrer">

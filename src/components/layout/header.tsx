@@ -111,6 +111,9 @@ export default function Header() {
                 <Link href={'/work-history'}>Experience</Link>
               </Magnetic>
               <Magnetic>
+                <Link href={'/certifications'}>Certifications</Link>
+              </Magnetic>
+              <Magnetic>
                 <Link href={'/projects'}>Projects</Link>
               </Magnetic>
             </div>

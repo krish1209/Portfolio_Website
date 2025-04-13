@@ -4,14 +4,20 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import ProjectHero from '@/app/projects/project/hero';
 import Image from 'next/image';
-import Picture1 from '../../../../public/images/bike.png';
-import Picture2 from '../../../../public/images/bike.png';
-import Picture3 from '../../../../public/images/bike.png';
+import { StaticImageData } from 'next/image';
 import PageScrollParallax from '@/components/pageScrollParallax';
 import TextGradient from '@/components/animations/textAnimations/textGradient';
 
 export default function TandemProject() {
-  const researchImages = ['/images/bike.png', '/images/bike.png'];
+  // Create placeholder image with correct typing
+  const placeholderImage: StaticImageData = { 
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500' viewBox='0 0 700 500'%3E%3Crect width='700' height='500' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24px' fill='%23333333'%3ETandem Bike Placeholder%3C/text%3E%3C/svg%3E",
+    height: 500,
+    width: 700
+  };
+
+  // Empty string array to replace missing images
+  const researchImages: string[] = [];
 
   const phrase =
     'By 2050, there will be more plastic than fish in the ocean by weight. ' +
@@ -49,20 +55,21 @@ export default function TandemProject() {
     <div>
       <ProjectHero
         description={heroText}
-        media={'/images/bike.png'}
+        media={"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500' viewBox='0 0 700 500'%3E%3Crect width='700' height='500' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24px' fill='%23333333'%3ETandem Bike Hero%3C/text%3E%3C/svg%3E"}
         isImage={true}
-        title={'StackeRs'}
+        title={'Tandem Bike'}
         bgColour={'background'}
       />
       <TextGradient phrase={phrase} colour={'primary'} />
       <PageScrollParallax
-        title={'StackeRs'}
+        title={'Tandem Bike Project'}
         body={introduction}
         word={''}
-        staticImgs={[Picture1, Picture2, Picture3]}
+        staticImgs={[placeholderImage, placeholderImage, placeholderImage]}
       />
       <div className="h-10 w-full p-24"></div>
-      {researchImages.map((asset, index) => (
+      {/* Remove or conditionally render image gallery */}
+      {researchImages.length > 0 && researchImages.map((asset, index) => (
         <Image
           key={index}
           src={asset}

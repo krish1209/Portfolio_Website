@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import ImgTilt from '../../gallery/imgTilt';
-// import ImgTilt from '@/app/gallery/imgTilt';
+import Image from 'next/image';
 
 interface Paragraph {
   title: string;
@@ -14,7 +13,6 @@ interface ProjectBodyProps {
   subtitle: string;
   introduction: string;
   myRole: string;
-  video: string;
   paragraphs: Paragraph[];
 }
 
@@ -22,7 +20,7 @@ export default function ProjectBody({
   subtitle,
   introduction,
   myRole,
-  paragraphs
+  paragraphs,
 }: ProjectBodyProps) {
   return (
     <section className="py-14 text-background mix-blend-difference sm:py-20">
@@ -38,14 +36,23 @@ export default function ProjectBody({
             {myRole}
           </p>
         </div>
-        <div className="space-y-12 py-12">{/*  TODO: add slides here*/}</div>
 
-        {paragraphs.map((paragraph, index) => (
-          <div key={index} className="gris-cols-1 grid gap-10 sm:grid-cols-2">
-            <ImgTilt
-              className="shadow-3xl z-10 m-10 overflow-hidden rounded-3xl bg-cover"
-              src={paragraph.images[0]}
-            />
+        {paragraphs.map((paragraph, idx) => (
+          <div
+            key={idx}
+            className="grid grid-cols-1 gap-10 sm:grid-cols-2"
+          >
+            {/* Replace ImgTilt with a normal Image or <img> */}
+            <div className="shadow-3xl z-10 m-10 overflow-hidden rounded-3xl bg-cover">
+              <Image
+                src={paragraph.images[0]}
+                alt={paragraph.title}
+                width={600}
+                height={400}
+                className="object-cover"
+              />
+            </div>
+
             <div className="space-y-6 sm:space-y-8">
               <h3 className="text-xl font-medium tracking-tight">
                 {paragraph.title}

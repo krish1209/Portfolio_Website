@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useRef } from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import Magnetic from '@/components/animations/magnetic';
 import { clsx } from 'clsx';
@@ -12,14 +12,17 @@ interface Props {
 export default function RoundedButton({
   children,
   backgroundColor = 'secondary',
+  className,
   ...attributes
 }: PropsWithChildren<Props>) {
-  const circle = useRef(null);
-  let timeline = useRef<gsap.core.Timeline | null>(null);
-  let timeoutId: NodeJS.Timeout;
+  const circle = useRef<HTMLDivElement>(null);
+  const timeline = useRef<gsap.core.Timeline>();
+  // Use a ref to hold the timeout ID so it's stable across renders
+  const timeoutRef = useRef<number>();
+
   useEffect(() => {
-    timeline.current = gsap.timeline({ paused: true });
-    timeline.current
+    timeline.current = gsap
+      .timeline({ paused: true })
       .to(
         circle.current,
         { top: '-25%', width: '150%', duration: 0.4, ease: 'power3.in' },
@@ -32,29 +35,32 @@ export default function RoundedButton({
       );
   }, []);
 
-  const manageMouseEnter = () => {
-    if (timeoutId) clearTimeout(timeoutId);
-    timeline.current!.tweenFromTo('enter', 'exit');
-  };
+  const handleMouseEnter = useCallback(() => {
+    // clear any pending exit animation
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeline.current?.tweenFromTo('enter', 'exit');
+  }, []);
 
-  const manageMouseLeave = () => {
-    timeoutId = setTimeout(() => {
-      timeline.current!.play();
+  const handleMouseLeave = useCallback(() => {
+    // delay the play so it doesn't feel too abrupt
+    timeoutRef.current = window.setTimeout(() => {
+      timeline.current?.play();
     }, 300);
-  };
+  }, []);
 
   return (
     <Magnetic>
       <Button
         variant="rounded"
-        className="relative flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-secondary px-4 py-6"
+        className={clsx(
+          'relative flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-secondary px-4 py-6',
+          className
+        )}
         style={{ overflow: 'hidden' }}
-        onMouseEnter={() => {
-          manageMouseEnter();
-        }}
-        onMouseLeave={() => {
-          manageMouseLeave();
-        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         {...attributes}
       >
         <div className="relative z-10 transition-colors duration-300 ease-linear hover:text-white">
@@ -66,7 +72,7 @@ export default function RoundedButton({
             'absolute top-[100%] h-[20%] w-full rounded-full sm:h-[150%]',
             `bg-${backgroundColor}`
           )}
-        ></div>
+        />
       </Button>
     </Magnetic>
   );

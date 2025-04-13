@@ -11,14 +11,11 @@
 
 </div>
 
-<a href="https://www.bettinasosa.com">Visit my portfolio website</a>
-
 ## Features:
 
 - Fast and performant
 - SEO-friendly
 - Easy to update and maintain
-- Mobile-friendly
 - Responsive design
 
 ## Getting Started
@@ -29,10 +26,7 @@ Navigate to your project folder and install its dependencies:
 
 ```
 npm install
-```
 
-```
-yarn install
 ```
 
 ### Start
@@ -65,7 +59,3 @@ This builds the app for production to the `./dist/` folder.
 
 This project is licensed under the terms of the MIT license.
 
-### My Portfolio Website
-
-This is my personal portfolio website, showcasing my skills and experience in [list of skills and experience]. It is
-built with Next.js and deployed on Vercel.

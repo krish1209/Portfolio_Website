@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import ImgTilt from '@/app/gallery/imgTilt';
+import ImgTilt from '../../gallery/imgTilt';
+// import ImgTilt from '@/app/gallery/imgTilt';
 
 interface Paragraph {
   title: string;

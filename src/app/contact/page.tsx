@@ -65,7 +65,7 @@ export default function Contact() {
               onClick={() => {
                 toast({
                   description:
-                    'Email copied to clipboard, alternatively write your enquiry on the form!'
+                    'Email copied to clipboard'
                 });
                 scrollToEmail();
               }}

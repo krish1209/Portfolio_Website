@@ -238,7 +238,7 @@ export default function Certifications() {
               style={{ 
                 background: `linear-gradient(135deg, rgba(20,20,20,0.7), rgba(0,0,0,0.85))`,
                 boxShadow: `0 15px 40px -15px ${cert.color}40, inset 0 0 0 1px ${cert.color}15`,
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                transition: 'all 0.4s ease(0.175, 0.885, 0.32, 1.275)'
               }}
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">

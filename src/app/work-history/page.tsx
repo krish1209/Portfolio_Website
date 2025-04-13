@@ -41,7 +41,7 @@ const experiences: Experience[] = [
 ];
 
 const education = {
-  degree: 'Bachelor of Technology in Computer Science (AI & ML)',
+  degree: 'Bachelor of Technology in Computer Science',
   institution: 'Vellore Institute of Technology',
   period: 'Apr 2020 - Aug 2024',
   location: 'Vellore, India',

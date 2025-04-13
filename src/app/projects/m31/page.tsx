@@ -1,20 +1,21 @@
 'use client';
 import ProjectHero from '@/app/projects/project/hero';
 import PageScrollParallax from '@/components/pageScrollParallax';
-import Picture1 from '../../../../public/images/m31/controller.jpg';
-import Picture3 from '../../../../public/images/m31/gold.webp';
-import Picture2 from '../../../../public/images/m31/logoblack.png';
 import Image from 'next/image';
 import React from 'react';
+import { StaticImageData } from 'next/image';
 
 export default function M31Project() {
-  const researchAssets = [
-    '/images/m31/controller.png',
-    '/images/m31/app.png',
-    '/images/m31/packaging.png',
-    '/images/m31/research.png',
-    '/images/m31/specs.png'
-  ];
+  // Create properly typed placeholder images
+  const placeholderImage: StaticImageData = { 
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500' viewBox='0 0 700 500'%3E%3Crect width='700' height='500' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24px' fill='%23333333'%3EPlaceholder Image%3C/text%3E%3C/svg%3E",
+    height: 500,
+    width: 700
+  };
+  
+  // Empty but properly typed array
+  const researchAssets: string[] = [];
+  
   const introduction =
     'Andromeda is a new audio-tactile gaming system that promotes socially inclusive play between visually impaired and sighted individuals. ' +
     'It expands the non-visual output of existing games, opening up the possibility for ' +
@@ -38,21 +39,24 @@ export default function M31Project() {
         title={'Expanding the Non-Visual Output of Games'}
         body={introduction}
         word={description}
-        staticImgs={[Picture1, Picture2, Picture3]}
+        staticImgs={[placeholderImage, placeholderImage, placeholderImage]} 
       />
-      <div>
-        {researchAssets.map((asset, index) => (
-          <Image
-            key={index}
-            src={asset}
-            alt="Project specs"
-            width={700}
-            height={500}
-            quality={100}
-            layout="responsive"
-          />
-        ))}
-      </div>
+      {/* Only render images if they exist */}
+      {researchAssets.length > 0 && (
+        <div>
+          {researchAssets.map((asset, index) => (
+            <Image
+              key={index}
+              src={asset}
+              alt="Project specs"
+              width={700}
+              height={500}
+              quality={100}
+              layout="responsive"
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

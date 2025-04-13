@@ -4,25 +4,19 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import ProjectHero from '@/app/projects/project/hero';
 import Image from 'next/image';
-import Picture1 from '../../../../public/images/bottles/stack3.png';
-import Picture2 from '../../../../public/images/bottles/blue.png';
-import Picture3 from '../../../../public/images/bottles/block.png';
+import { StaticImageData } from 'next/image';
 import PageScrollParallax from '@/components/pageScrollParallax';
 import TextGradient from '@/components/animations/textAnimations/textGradient';
 
 export default function StackersProject() {
-  useEffect(() => {
-    (async () => {
-      // @ts-ignore
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      const locomotiveScroll = new LocomotiveScroll();
-    })();
-  }, []);
+  // Create properly typed placeholder images
+  const placeholderImage: StaticImageData = { 
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500' viewBox='0 0 700 500'%3E%3Crect width='700' height='500' fill='%23cccccc'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24px' fill='%23333333'%3EPlaceholder Image%3C/text%3E%3C/svg%3E",
+    height: 500,
+    width: 700
+  };
 
-  const researchImages = [
-    '/images/bottles/stack1.png',
-    '/images/bottles/stack2.png'
-  ];
+  const researchImages: string[] = [];
 
   const phrase =
     'By 2050, there will be more plastic than fish in the ocean by weight. ' +
@@ -60,7 +54,7 @@ export default function StackersProject() {
     <div>
       <ProjectHero
         description={heroText}
-        media={'/images/bottles/block.png'}
+        media={'/images/placeholder.jpg'}
         isImage={true}
         title={'StackeRs'}
         bgColour={'background'}
@@ -70,10 +64,10 @@ export default function StackersProject() {
         title={'StackeRs'}
         body={introduction}
         word={''}
-        staticImgs={[Picture1, Picture2, Picture3]}
+        staticImgs={[placeholderImage, placeholderImage, placeholderImage]}
       />
       <div className="h-10 w-full p-24"></div>
-      {researchImages.map((asset, index) => (
+      {researchImages.length > 0 && researchImages.map((asset, index) => (
         <Image
           key={index}
           src={asset}

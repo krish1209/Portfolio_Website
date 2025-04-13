@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Vercel Deploy](https://deploy-badge.vercel.app/?url=http://www.nextjs.org/&bettinasosa=bettinasosa.com)](https://vercel.com)
-[![Portfolio](https://img.shields.io/badge/link%20to%20website-8A2BE2)](https://www.bettinasosa.com)
+
 
 </div>
 
